@@ -1,7 +1,7 @@
 // importa a biblioteca
 const readline = require('readline');
 
-const calculo = require('./modulo/calculo');
+const calculo = require('./modulo/calculo.js');
 
 // cria o objeto de entrada de dados
 const entradaDados = readline.createInterface({
