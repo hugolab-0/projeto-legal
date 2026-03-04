@@ -84,26 +84,21 @@ function resultado(
     let letraAluno;
     let letra;
 
-    if (sexoP == 'masculino' && sexoA== 'masculino') { 
-        letraProfessor = 'Professor';
-        letraAluno = 'aluno'; 
-        letra = 'O';
+    switch (sexoP){
+
+        case 'Masculino':
+            case 'masculino':
+                case 'MASCULINO':{
+
+                    letraProfessor = 'Professor'
+                }
+        case 'Feminino':
+            case 'feminino':
+                case 'FEMININO':{
+
+                    letraProfessor = 'Professora'
+                }       
     }
-    else if (sexoP == 'masculino' && sexoA == 'feminino') {
-         letraProfessor = 'Professor';
-         letraAluno = 'aluna'; 
-         letra = 'A';
-        }
-    else if (sexoP == 'feminino' && sexoA == 'masculino'){
-         letraProfessor = 'Professora';
-         letraAluno = 'aluno'; 
-         letra = 'O';
-        }
-    else if (sexoP == 'feminino' && sexoA == 'feminino') {
-         letraProfessor = 'Professora';
-         letraAluno = 'aluna';
-         letra = 'A';
-        }
 
    
 
