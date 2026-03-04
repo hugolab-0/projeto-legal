@@ -59,7 +59,13 @@ entradaDados.question('Informe o nome do professor: ', function (nomeP) {
                                             disciplina
                                         );
 
-                                        let resultado = calculo.calculoMedia(
+                                        let media = calculo.calculoMedia(
+                                            primeiraNota,
+                                            segundaNota,
+                                            terceiraNota,
+                                            quartaNota,
+                                        );
+                                        let resultado = calculo.resultado(
                                             primeiraNota,
                                             segundaNota,
                                             terceiraNota,

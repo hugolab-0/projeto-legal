@@ -1,66 +1,125 @@
 const validar = require('./validacoes.js');
 
-function calculoMedia(valor1, valor2, valor3, valor4, sexo1, sexo2, nome1, nome2, curso1, disciplina1) {
+function calculoMedia(nota1, nota2, nota3, nota4, sexoProfessor, sexoAluno, nomeProfessor, nomeAluno, curso, disciplina) {
+    
+    let n1 = Number(nota1);
+    let n2 = Number(nota2);
+    let n3 = Number(nota3);
+    let n4 = Number(nota4);
 
-    let n1 = Number(valor1);
-    let n2 = Number(valor2);
-    let n3 = Number(valor3);
-    let n4 = Number(valor4);
+    let validacao = validar.validacoes(n1, n2, n3, n4);
 
-    let sexoP = sexo1;
-    let sexoA = sexo2;
-    let final;
+    let somaNotas = n1 + n2 + n3 + n4;
+    let mediaFinal = somaNotas / 4;
 
-    let nomeP = nome1;
-    let nomeA = nome2;
-    let curso = curso1;
-    let disciplina = disciplina1;
+    let statusFinal;
 
-    let validarNumero = validar.validacoes(n1, n2, n3, n4);
-
-    let somarNostas = n1 + n2 + n3 + n4;
-    let resultado = somarNostas / 4;
-
-    if (resultado >= 70) {
-        final = 'Aprovado';
+    if (mediaFinal >= 70) {
+        statusFinal = 'Aprovado';
     } 
-    else if (resultado < 50) {
-        final = 'Reprovado';
+    else if (mediaFinal < 50) {
+        statusFinal = 'Reprovado';
     } 
-    else if (resultado >= 50 && resultado <= 69.9) {
-        let resultado2 = calculoExame(final);
+    else {
+        statusFinal = calculoExame(mediaFinal);
     }
 
-    if (sexoP == 'masculino' && sexoA == 'masculino') {
-        
-         console.log(`O aluno ${nomeA} foi ${final} na disciplina ${disciplina}.`)
-         console.log(`Curso: xxxxxxxx`);
-         console.log(`Professor: xxxxxxxx`);
-         console.log(`Notas do aluno: Nota1, Nota2, Nota3, Nota4`);
-         console.log(`Média Final: xxxxxx`);
-    } 
+    resultado(
+        n1, 
+        n2, 
+        n3, 
+        n4, 
+        sexoProfessor, 
+        sexoAluno, 
+        nomeProfessor, 
+        nomeAluno, 
+        curso, 
+        disciplina, 
+        mediaFinal, 
+        statusFinal
+    );
+}
+
+function calculoExame(media) {
+
+    if (media >= 60) {
+        return 'Aprovado';
+    } else {
+        return 'Reprovado';
+    }
+}
+
+function resultado(
+    nota1, 
+    nota2, 
+    nota3, 
+    nota4, 
+    sexoProfessor, 
+    sexoAluno, 
+    nomeProfessor, 
+    nomeAluno, 
+    curso, 
+    disciplina, 
+    mediaFinal, 
+    statusFinal
+) {
+
+    let n1 = Number(nota1);
+    let n2 = Number(nota2);
+    let n3 = Number(nota3);
+    let n4 = Number(nota4);
+
+    let media = mediaFinal;
+    let status = statusFinal;
+
+    let sexoP = sexoProfessor;
+    let sexoA = sexoAluno;
+
+    let nomeP = nomeProfessor;
+    let nomeA = nomeAluno;
+    let nomeCurso = curso;
+    let nomeDisciplina = disciplina;
+
+    let letraProfessor;
+    let letraAluno;
+    let letra;
+
+    if (sexoP == 'masculino' && sexoA== 'masculino') { 
+        letraProfessor = 'Professor';
+        letraAluno = 'aluno'; 
+        letra = 'O';
+    }
     else if (sexoP == 'masculino' && sexoA == 'feminino') {
-
-    } 
+         letraProfessor = 'Professor';
+         letraAluno = 'aluna'; 
+         letra = 'A';
+        }
+    else if (sexoP == 'feminino' && sexoA == 'masculino'){
+         letraProfessor = 'Professora';
+         letraAluno = 'aluno'; 
+         letra = 'O';
+        }
     else if (sexoP == 'feminino' && sexoA == 'feminino') {
+         letraProfessor = 'Professora';
+         letraAluno = 'aluna';
+         letra = 'A';
+        }
 
-    }
+   
+
+    console.log('--------------------------------------------------------------------------------------');
+
+    console.log(`${letra} ${letraAluno} ${nomeA} foi ${status} na disciplina ${nomeDisciplina}.`);
+    console.log(`Curso: ${nomeCurso}`);
+    console.log(`${letraProfessor}: ${nomeP}`);
+    console.log(`Notas do aluno: ${n1}, ${n2}, ${n3}, ${n4}`);
+    console.log(`Média Final: ${media}`);
 
     process.exit(0);
 }
 
-function calculoExame(valor1) {
-
-    let n1 = Number(valor1);
-
-    if (n1 >= 60) {
-        final = 'Aprovado';
-    } else {
-        final = 'Reprovado';
-    }
-}
-
 module.exports = {
     calculoMedia,
-    calculoExame
+    calculoExame,
+    resultado
 };
