@@ -1,6 +1,6 @@
 const validar = require('./validacoes.js');
 
-function calculoMedia(nota1, nota2, nota3, nota4, sexoProfessor, sexoAluno, nomeProfessor, nomeAluno, curso, disciplina) {
+function calculoNota(nota1, nota2, nota3, nota4, sexoProfessor, sexoAluno, nomeProfessor, nomeAluno, curso, disciplina) {
     
     let n1 = Number(nota1);
     let n2 = Number(nota2);
@@ -84,23 +84,6 @@ function resultado(
     let letraAluno;
     let letra;
 
-    switch (sexoP){
-
-        case 'Masculino':
-            case 'masculino':
-                case 'MASCULINO':{
-
-                    letraProfessor = 'Professor'
-                }
-        case 'Feminino':
-            case 'feminino':
-                case 'FEMININO':{
-
-                    letraProfessor = 'Professora'
-                }       
-    }
-
-   
 
     console.log('--------------------------------------------------------------------------------------');
 
@@ -114,7 +97,7 @@ function resultado(
 }
 
 module.exports = {
-    calculoMedia,
+    calculoNota,
     calculoExame,
     resultado
 };

@@ -50,7 +50,7 @@ entradaDados.question('Informe o nome do professor: ', function (nomeP) {
                                     entradaDados.question('Digite a quarta nota: ', function (nota4) {
                                         let quartaNota = nota4;
 
-                                        let validacaoString = validacaoStrin.validarString(
+                                        let validacaoString = validacaoStrin.validacoes(
                                             nomeP,
                                             sexoP,
                                             nomeA,
@@ -59,7 +59,7 @@ entradaDados.question('Informe o nome do professor: ', function (nomeP) {
                                             disciplina
                                         );
 
-                                        let media = calculo.calculoMedia(
+                                        let media = calculo.calculoNota(
                                             primeiraNota,
                                             segundaNota,
                                             terceiraNota,
@@ -78,19 +78,15 @@ entradaDados.question('Informe o nome do professor: ', function (nomeP) {
                                             disciplina
                                         );
 
-                                        entradaDados.question(
-                                            'Informe qual foi a nota do aluno no exame: ',
-                                            function (exame) {
+                                        entradaDados.question('Informe qual foi a nota do aluno no exame: ',function (exame) {
                                                 let notaExame = exame;
 
                                                 let resultado2 = calculo.calculoExame(notaExame);
-                                            }
-                                        );
+                                        });
                                     });
                                 });
                             });
                         });
-
                     });
                 });
             });
