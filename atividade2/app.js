@@ -1,6 +1,5 @@
 /*****************
  * objetivo: Desenvolver um sistema para coletar as informações do usuario
- * 
  * autor: Hugo
  * versão: 1.0
  ******************/
@@ -8,7 +7,7 @@
 // importa a biblioteca
 const readline = require('readline');
 const calculo = require('./modulo/calculoMedia.js');
-const validacaoStrin = require('./modulo/validacoes.js');
+const validacao = require('./modulo/validacoes.js');
 
 // cria o objeto de entrada de dados
 const entradaDados = readline.createInterface({
@@ -17,72 +16,53 @@ const entradaDados = readline.createInterface({
 });
 
 // coletando informação
-entradaDados.question('Informe o nome do professor: ', function (nomeP) {
-    let nomeProfessor = nomeP;
+entradaDados.question('Informe o nome do professor: ', function (nomeProfessor) {
 
-    entradaDados.question('Informe o sexo do professor (masculino/feminino): ', function (sexoP) {
-        let sexoProfessor = sexoP;
+    entradaDados.question('Informe o sexo do professor (masculino/feminino): ', function (sexoProfessor) {
 
-        entradaDados.question('Nome do aluno: ', function (nomeA) {
-            let nomeAluno = nomeA;
+        entradaDados.question('Informe o nome do aluno: ', function (nomeAluno) {
 
-            entradaDados.question('Sexo do aluno (masculino/feminino): ', function (sexoA) {
-                let sexoAluno = sexoA;
+            entradaDados.question('Informe o sexo do aluno (masculino/feminino): ', function (sexoAluno) {
 
-                entradaDados.question('Nome do curso: ', function (curso) {
-                    let nomeCurso = curso;
+                entradaDados.question('Informe o nome do curso: ', function (curso) {
 
-                    entradaDados.question('Nome da disciplina: ', function (disciplina) {
-                        let nomeDisciplina = disciplina;
+                    entradaDados.question('Informe o nome da disciplina: ', function (disciplina) {
+
+                        // validação de texto
+                        validacao.validarString(
+                            nomeProfessor,
+                            nomeAluno,
+                            sexoProfessor,
+                            sexoAluno,
+                            curso,
+                            disciplina
+                        );
 
                         console.log('--------------------------------------------------------------');
 
-                        // entrada das notas
                         entradaDados.question('Digite a primeira nota: ', function (nota1) {
-                            let primeiraNota = nota1;
 
                             entradaDados.question('Digite a segunda nota: ', function (nota2) {
-                                let segundaNota = nota2;
 
                                 entradaDados.question('Digite a terceira nota: ', function (nota3) {
-                                    let terceiraNota = nota3;
 
                                     entradaDados.question('Digite a quarta nota: ', function (nota4) {
-                                        let quartaNota = nota4;
 
-                                        let validacaoString = validacaoStrin.validacoes(
-                                            nomeP,
-                                            sexoP,
-                                            nomeA,
-                                            sexoA,
+                                        calculo.calculoNota(
+                                            nota1,
+                                            nota2,
+                                            nota3,
+                                            nota4,
+                                            sexoProfessor,
+                                            sexoAluno,
+                                            nomeProfessor,
+                                            nomeAluno,
                                             curso,
                                             disciplina
                                         );
 
-                                        let media = calculo.calculoNota(
-                                            primeiraNota,
-                                            segundaNota,
-                                            terceiraNota,
-                                            quartaNota,
-                                        );
-                                        let resultado = calculo.resultado(
-                                            primeiraNota,
-                                            segundaNota,
-                                            terceiraNota,
-                                            quartaNota,
-                                            sexoP,
-                                            sexoA,
-                                            nomeP,
-                                            nomeA,
-                                            curso,
-                                            disciplina
-                                        );
+                                        entradaDados.close();
 
-                                        entradaDados.question('Informe qual foi a nota do aluno no exame: ',function (exame) {
-                                                let notaExame = exame;
-
-                                                let resultado2 = calculo.calculoExame(notaExame);
-                                        });
                                     });
                                 });
                             });

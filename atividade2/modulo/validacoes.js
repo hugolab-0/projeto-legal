@@ -18,7 +18,7 @@ function validarString(nome1, nome2, sexo1, sexo2, curso, disciplina) {
         disciplina1 == ''
     ) {
 
-        console.log('ERRO: Os valores solicitados não foram preenchidos ou são invalidos');
+        console.log('ERRO: Os valores solicitados não foram preenchidos');
         process.exit(0);
 
     } else if (
