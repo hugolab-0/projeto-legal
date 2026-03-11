@@ -8,13 +8,18 @@ const entradaDados = readline.createInterface({
     output: process.stdout
 });
 
-    entradaDados.question('Escolha um número inicial de 0 até 500: ', function(inicial){
-        let numeroInic = inicial
+entradaDados.question('Escolha um número inicial de 0 até 500: ', function(inicial){
 
-        entradaDados.question('Esolha um número final de 100 até 1000: ', function(final){
-            let numeroFin = final
+    entradaDados.question('Escolha um número final de 100 até 1000: ', function(final){
 
-            let separar = calculo
+        let status = calculo.validacao(inicial, final)
 
-        });
+        if(status){
+            calculo.separar(inicial, final)
+        }
+
+        entradaDados.close()
+
     });
+
+});
